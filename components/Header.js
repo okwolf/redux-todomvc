@@ -17,6 +17,7 @@ const Header = ({ addTodo }) => (
     />
   </header>
 )
+
 Header.propTypes = {
   addTodo: PropTypes.func.isRequired
 }

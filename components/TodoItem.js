@@ -28,7 +28,6 @@ class TodoItem extends Component {
   render() {
     const {
       todo,
-      relatedTodo,
       completeTodo,
       deleteTodo,
     } = this.props
@@ -51,7 +50,7 @@ class TodoItem extends Component {
             checked={todo.isCompleted}
             onChange={() => completeTodo(todo.id)} />
           <label onDoubleClick={this.handleDoubleClick.bind(this)}>
-            {todo.text} {relatedTodo && relatedTodo.isCompleted ? "(+)" : "(-)"}
+            {todo.text}
           </label>
           <button
             className="destroy"
@@ -73,7 +72,6 @@ class TodoItem extends Component {
 TodoItem.propTypes = {
   todo: PropTypes.object.isRequired,
   isCompleted: PropTypes.bool,
-  isRelatedTodoCompleted: PropTypes.bool,
   editTodo: PropTypes.func.isRequired,
   deleteTodo: PropTypes.func.isRequired,
   completeTodo: PropTypes.func.isRequired
@@ -84,10 +82,8 @@ const makeMapStateToProps = (initialState, initialProps) => {
   const mapStateToProps = (state) => {
     const { todos } = state
     const todo = todos.byId[id]
-    const relatedTodo = todo.relatedId && todos.byId[todo.relatedId]
     return {
-      todo,
-      relatedTodo
+      todo
     }
   }
   return mapStateToProps

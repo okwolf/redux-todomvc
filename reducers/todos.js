@@ -1,20 +1,14 @@
 import { ADD_TODO, DELETE_TODO, EDIT_TODO, COMPLETE_TODO, COMPLETE_ALL, CLEAR_COMPLETED } from '../constants/ActionTypes'
 import { combineReducers } from 'redux'
 
-let initialById = {}
-let initialListedIds = []
-
-const STORE_SIZE = 10000;
-for (let i = 0; i < STORE_SIZE; i++) {
-  let nextId = 'prefilled-' + i
-  initialListedIds.push(nextId)
-  initialById[nextId] = {
-    text: 'Item' + i,
-    id: nextId,
-    relatedId: i > 0 ? 'prefilled-' + (i - 1) : null,
+const initialById = {
+  'prefilled-0': {
+    text: 'Use Redux',
+    id: 'prefilled-0',
     isCompleted: false
-  };
+  }
 }
+const initialListedIds = [ 'prefilled-0' ]
 
 function todo(state, action) {
   switch (action.type) {
@@ -22,7 +16,6 @@ function todo(state, action) {
       return {
         text: action.text,
         id: action.id,
-        relatedId: null,
         isCompleted: false
       }
     case EDIT_TODO:

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import FilterLink from './FilterLink'
 import { getCompletedCount, getListedCount } from '../reducers'
 import { clearCompleted } from '../actions'
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters'
+import { FILTER_TITLES } from '../constants/TodoFilters'
 
 const TodoCount = ({ activeCount }) => (
   <span className="todo-count">
@@ -25,7 +25,7 @@ const Footer = ({ filter, completedCount, listedCount, clearCompleted }) => (
     <footer className="footer">
       <TodoCount activeCount={listedCount - completedCount} />
       <ul className="filters">
-        {[ SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED ].map(filter =>
+        {Object.keys(FILTER_TITLES).map(filter =>
           <li key={filter}>
             <FilterLink filter={filter} />
           </li>

@@ -2,13 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
 import { setFilter } from '../actions'
-import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from '../constants/TodoFilters'
-
-const FILTER_TITLES = {
-  [SHOW_ALL]: 'All',
-  [SHOW_ACTIVE]: 'Active',
-  [SHOW_COMPLETED]: 'Completed'
-}
+import { FILTER_TITLES } from '../constants/TodoFilters'
 
 const FilterLink = ({ filter, selected, onClick }) => (
   <a className={classnames({ selected })}
